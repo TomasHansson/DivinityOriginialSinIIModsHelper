@@ -75,7 +75,14 @@ namespace DivinityOriginialSinIIModsHelper
             string[] subfolders = Directory.GetDirectories(workshopFolder);
             foreach (string folder in subfolders)
             {
-                string modFilePath = Directory.GetFiles(folder)[0];
+                string[] subfolderContent = Directory.GetFiles(folder);
+                if (subfolderContent.Length == 0)
+                {
+                    // Subfolder empty -> Continue with next subfolder.
+                    continue;
+                }
+
+                string modFilePath = subfolderContent.First();
                 string modFileName = Path.GetFileName(modFilePath);
                 if (currentModsFileNames.Contains(modFileName))
                 {
