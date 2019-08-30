@@ -71,6 +71,7 @@ namespace DivinityOriginialSinIIModsHelper
                 return;
             }
 
+            ToggleButtons(false);
             moveTextBox.Text = "Update in progress...";
             string[] subfolders = Directory.GetDirectories(workshopFolder);
             foreach (string folder in subfolders)
@@ -118,6 +119,7 @@ namespace DivinityOriginialSinIIModsHelper
             else
                 moveTextBox.Text = $"New mods: {numberOfNewMods}. Updated mods: {numberOfUpdatedMods}. Unchanged mods: {numberOfUnchangedMods}." +
                     $"Total: {numberOfNewMods + numberOfUpdatedMods + numberOfUnchangedMods}.";
+            ToggleButtons(true);
         }
 
         private string GetConfigurationsFilePath()
@@ -132,6 +134,14 @@ namespace DivinityOriginialSinIIModsHelper
             string configurationsFilePath = GetConfigurationsFilePath();
             using (StreamWriter streamWriter = new StreamWriter(configurationsFilePath))
                 streamWriter.WriteLine(steamTextBox.Text + "|" + documentsTextBox.Text);
+        }
+
+        private void ToggleButtons(bool enabled)
+        {
+            steamButton.Enabled = enabled;
+            documentsButton.Enabled = enabled;
+            moveButton.Enabled = enabled;
+            storeFoldersButton.Enabled = enabled;
         }
     }
 }
