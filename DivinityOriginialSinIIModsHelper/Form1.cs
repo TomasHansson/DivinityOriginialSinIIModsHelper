@@ -49,6 +49,15 @@ namespace DivinityOriginialSinIIModsHelper
         {
             int numberOfNewMods = 0, numberOfUpdatedMods = 0, numberOfUnchangedMods = 0;
 
+            string workshopFolder = string.Concat(steamTextBox.Text, @"\steamapps\workshop\content\435150");
+            if (!Directory.Exists(workshopFolder))
+            {
+                MessageBox.Show("Cannot find the workshop-folder in the selected Steam-folder."
+                    + "\n\nEnsure that the game is installed correctly and that you've selected the correct Steam folder.");
+                moveTextBox.Text = "Failed operation.";
+                return;
+            }
+
             string modsFolder = string.Concat(documentsTextBox.Text, @"\Larian Studios\Divinity Original Sin 2 Definitive Edition\Mods");
             if (!Directory.Exists(modsFolder))
             {
@@ -61,15 +70,6 @@ namespace DivinityOriginialSinIIModsHelper
             List<string> currentModsFileNames = new List<string>();
             foreach (var modFilePath in currentModsFilePaths)
                 currentModsFileNames.Add(Path.GetFileName(modFilePath));
-
-            string workshopFolder = string.Concat(steamTextBox.Text, @"\steamapps\workshop\content\435150");
-            if (!Directory.Exists(workshopFolder))
-            {
-                MessageBox.Show("Cannot find the workshop-folder in the selected Steam-folder."
-                    + "\n\nEnsure that the game is installed correctly and that you've selected the correct Steam folder.");
-                moveTextBox.Text = "Failed operation.";
-                return;
-            }
 
             ToggleButtons(false);
             moveTextBox.Text = "Update in progress...";
@@ -114,11 +114,8 @@ namespace DivinityOriginialSinIIModsHelper
                 }
             }
 
-            if (numberOfNewMods == 0 && numberOfUpdatedMods == 0)
-                moveTextBox.Text = $"No new or updated mods were found. Found {numberOfUnchangedMods} previously installed mods.";
-            else
-                moveTextBox.Text = $"New mods: {numberOfNewMods}. Updated mods: {numberOfUpdatedMods}. Unchanged mods: {numberOfUnchangedMods}." +
-                    $"Total: {numberOfNewMods + numberOfUpdatedMods + numberOfUnchangedMods}.";
+            moveTextBox.Text = $"New mods: {numberOfNewMods}. Updated mods: {numberOfUpdatedMods}. Unchanged mods: {numberOfUnchangedMods}." +
+                $"Total: {numberOfNewMods + numberOfUpdatedMods + numberOfUnchangedMods}.";
             ToggleButtons(true);
         }
 

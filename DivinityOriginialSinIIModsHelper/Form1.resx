@@ -120,4 +120,15 @@
   <metadata name="folderBrowserDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="label3.Text" xml:space="preserve">
+    <value>- This will copy the .pak-files of any new or updated mods from within their respective
+   subfolders in the Steam-folder to the mods-folder found in your Documents-folder.
+- Beware: Older versions of updated mods will be replaced.</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>- The default is C:\Program Files (x86)\Steam.
+- This should contain a subfolder with the name steamapp.
+- Ensure this is where Divinity is installed (it's possible to
+   have different installation-paths for different games).</value>
+  </data>
 </root>
